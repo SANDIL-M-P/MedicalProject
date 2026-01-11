@@ -1,0 +1,43 @@
+// Ignore compiled files
+*.class
+*.log
+*.jar
+*.war
+*.ear
+*.zip
+*.tar.gz
+
+
+// Ignore build directories
+# Maven
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.next
+release.properties
+
+# Gradle
+.gradle/
+build/
+
+
+// Ignore IDE specific files
+
+# IntelliJ
+.idea/
+*.iml
+*.iws
+
+# Eclipse
+.settings/
+.project
+.classpath
+
+# VS Code
+.vscode/
+
+
+
+// Ignore local settings
+.DS_Store
+Thumbs.db
