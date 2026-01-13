@@ -1,8 +1,9 @@
+import java.io.Serializable;
 import java.util.Date;
 
-public class Administrator extends Person {   // ← Removed redundant Serializable
+public class Administrator extends Person {
 
-    private final String adminID;           // ← added final
+    private final String adminID;
     private final String accessLevel;
     private final String department;
     private final Date hireDate;
@@ -30,14 +31,27 @@ public class Administrator extends Person {   // ← Removed redundant Serializa
     }
 
     public String generateReport() {
-        return "Sample Report: Total Patients - 50, Appointments Today - 12"; // placeholder
+        return "Sample Report: Total Patients - " + HospitalManager.getInstance().getPatients().size() +
+               ", Total Doctors - " + HospitalManager.getInstance().getDoctors().size();
     }
 
     public void processPayment(Bill bill) {
         bill.setPaymentStatus("Paid");
     }
 
-    // Getters (no setters needed since fields are final)
+    // New: Register a new Doctor
+    public void registerDoctor(Doctor doctor) {
+        HospitalManager.getInstance().addDoctor(doctor);
+        System.out.println("Doctor registered: " + doctor.getPersonDetails());
+    }
+
+    // New: Register a new Nurse (as MedicalStaff subclass)
+    public void registerNurse(Nurse nurse) {
+        HospitalManager.getInstance().addNurse(nurse);
+        System.out.println("Nurse registered: " + nurse.getPersonDetails());
+    }
+
+    // Getters
     public String getAdminID() { return adminID; }
     public String getAccessLevel() { return accessLevel; }
     public String getDepartment() { return department; }

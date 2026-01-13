@@ -7,12 +7,13 @@ public class Appointment implements Serializable {
     private Doctor doctor;
     private Date appointmentDate;
     private String appointmentTime;
-    private String status; // e.g., "Scheduled", "Completed", "Cancelled"
-    private String type;   // e.g., "Consultation", "Follow-up"
+    private String status;
+    private String type;
     private String notes;
 
-    public Appointment(String appointmentID, Patient patient, Doctor doctor, Date appointmentDate,
-                       String appointmentTime, String status, String type, String notes) {
+    public Appointment(String appointmentID, Patient patient, Doctor doctor,
+                       Date appointmentDate, String appointmentTime,
+                       String status, String type, String notes) {
         this.appointmentID = appointmentID;
         this.patient = patient;
         this.doctor = doctor;
@@ -37,8 +38,16 @@ public class Appointment implements Serializable {
         this.status = "Rescheduled";
     }
 
-    // Getters/setters
-    public Patient getPatient() { return patient; }
-    public Doctor getDoctor() { return doctor; }
-    public String getStatus() { return status; }
+    // Required getters for saving & displaying
+    public String getAppointmentID()     { return appointmentID; }
+    public Patient getPatient()          { return patient; }
+    public Doctor  getDoctor()           { return doctor; }
+    public Date    getAppointmentDate()  { return appointmentDate; }
+    public String  getAppointmentTime()  { return appointmentTime; }
+    public String  getStatus()           { return status; }
+    public String  getType()             { return type; }
+    public String  getNotes()            { return notes; }
+
+    // Optional setter if needed later
+    public void setStatus(String status) { this.status = status; }
 }

@@ -1,5 +1,5 @@
 # personID,firstName,lastName,dateOfBirth,gender,contactNumber,email,address,patientID,registrationDate,bloodGroup,allergies,emergencyContact,insuranceInfo
 P1768120435307,Sandil,Peiis,2026-01-11,Not Specified,,no@email.com,N/A,21213,2026-01-11,E,,,
-P1768120577552,Akalanka,ewew,2026-01-11,Not Specified,,no@email.com,N/A,112,2026-01-11,Q,,,3323
-P1768120594852,213,dwd,2026-01-11,Not Specified,,no@email.com,N/A,dsad,2026-01-11,,,,212
-P1768120856315,2132,212323,2026-01-11,Not Specified,,no@email.com,N/A,,2026-01-11,,,,
+P1768120577552,Akalanka,Herath,2026-01-11,Not Specified,,no@email.com,N/A,112,2026-01-11,Q,,,3323
+P1768120594852,Jagath,Vithana,2026-01-11,Not Specified,,no@email.com,N/A,dsad,2026-01-11,,,,212
+P1768120856315,Saman,Kumara,2026-01-11,Not Specified,,no@email.com,N/A,,2026-01-11,,,,

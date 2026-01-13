@@ -1,7 +1,6 @@
 import java.io.Serializable;
 import java.util.Date;
 
-// Inheritance
 public class Doctor extends MedicalStaff implements Serializable {
     private String specialization;
     private double consultationFee;
@@ -20,31 +19,67 @@ public class Doctor extends MedicalStaff implements Serializable {
         this.yearsOfExperience = yearsOfExperience;
     }
 
-    // Polymorphism: override from MedicalStaff
     @Override
     public void performDuties() {
-        // Doctor-specific
-        System.out.println("Diagnosing patient...");
+        System.out.println("Doctor " + getFirstName() + " is consulting patients...");
     }
 
-    // Polymorphism: override abstract from Person
     @Override
     public String getPersonDetails() {
         return "Doctor ID: " + getStaffID() + ", Name: " + getFirstName() + " " + getLastName() +
                ", Specialization: " + specialization;
     }
 
-    public void diagnosePatient(Patient patient, String diagnosis) {
-        // Add to record (implement later)
+    // Method to add diagnosis & treatment to patient's record
+    public void addMedicalRecord(Patient patient, String symptoms, String diagnosis, String treatment, String prescription) {
+        MedicalRecord record = new MedicalRecord(
+            "REC" + System.currentTimeMillis(),
+            patient,
+            this,
+            new Date(),
+            symptoms,
+            diagnosis,
+            treatment,
+            prescription,
+            "" // test results can be added later
+        );
+        patient.addMedicalRecord(record);
+        System.out.println("Medical record added for patient: " + patient.getPatientID());
     }
 
-    public void prescribeMedication(Patient patient, String medication) {
-        // Logic (implement later)
-    }
-
-    // Add getters/setters for new fields
+    // Getters
     public String getSpecialization() { return specialization; }
     public double getConsultationFee() { return consultationFee; }
     public String getLicenseNumber() { return licenseNumber; }
     public int getYearsOfExperience() { return yearsOfExperience; }
+
+    public String getDepartment() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getDepartment'");
+    }
+
+    public Date getHireDate() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getHireDate'");
+    }
+
+    public double getSalary() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getSalary'");
+    }
+
+    public String getWorkSchedule() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getWorkSchedule'");
+    }
+
+    public String getQualifications() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getQualifications'");
+    }
+
+    public String getStaffType() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getStaffType'");
+    }
 }

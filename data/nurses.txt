@@ -1,0 +1,2 @@
+# personID,firstName,lastName,dob,gender,contact,email,address,staffID,dept,hireDate,salary,schedule,qual,type
+N1768301929271,Kusuma,Amarasingha,2026-01-13,Not Specified,N/A,N/A,N/A,NUS001,Genaral,2026-01-13,0.0,N/A,N/A,Nurse
