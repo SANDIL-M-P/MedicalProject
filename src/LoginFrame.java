@@ -12,10 +12,9 @@ public class LoginFrame extends JFrame {
         setTitle("MediCare Hospital - Login");
         setSize(450, 350);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLocationRelativeTo(null); // center on screen
+        setLocationRelativeTo(null);
         setLayout(new BorderLayout(10, 10));
 
-        // Main panel with padding
         JPanel mainPanel = new JPanel(new GridBagLayout());
         mainPanel.setBorder(BorderFactory.createEmptyBorder(30, 40, 30, 40));
 
@@ -23,7 +22,6 @@ public class LoginFrame extends JFrame {
         gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.insets = new Insets(10, 10, 10, 10);
 
-        // Title
         JLabel titleLabel = new JLabel("MediCare Hospital System", SwingConstants.CENTER);
         titleLabel.setFont(new Font("Arial", Font.BOLD, 24));
         gbc.gridx = 0;
@@ -31,7 +29,6 @@ public class LoginFrame extends JFrame {
         gbc.gridwidth = 2;
         mainPanel.add(titleLabel, gbc);
 
-        // Role selection
         gbc.gridy++;
         gbc.gridwidth = 1;
         mainPanel.add(new JLabel("Login as:"), gbc);
@@ -41,7 +38,6 @@ public class LoginFrame extends JFrame {
         gbc.gridx = 1;
         mainPanel.add(roleComboBox, gbc);
 
-        // Username
         gbc.gridx = 0;
         gbc.gridy++;
         mainPanel.add(new JLabel("Username:"), gbc);
@@ -50,7 +46,6 @@ public class LoginFrame extends JFrame {
         gbc.gridx = 1;
         mainPanel.add(usernameField, gbc);
 
-        // Password
         gbc.gridx = 0;
         gbc.gridy++;
         mainPanel.add(new JLabel("Password:"), gbc);
@@ -59,7 +54,6 @@ public class LoginFrame extends JFrame {
         gbc.gridx = 1;
         mainPanel.add(passwordField, gbc);
 
-        // Login button
         JButton loginButton = new JButton("Login");
         loginButton.setFont(new Font("Arial", Font.BOLD, 14));
         loginButton.setPreferredSize(new Dimension(150, 45));
@@ -69,7 +63,6 @@ public class LoginFrame extends JFrame {
         gbc.anchor = GridBagConstraints.CENTER;
         mainPanel.add(loginButton, gbc);
 
-        // Action listener
         loginButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -77,7 +70,6 @@ public class LoginFrame extends JFrame {
                 String password = new String(passwordField.getPassword()).trim();
                 String role = (String) roleComboBox.getSelectedItem();
 
-                // Very simple validation (for demo - in real project you can improve)
                 if (username.isEmpty() || password.isEmpty()) {
                     JOptionPane.showMessageDialog(LoginFrame.this,
                             "Please enter username and password!",
@@ -85,20 +77,37 @@ public class LoginFrame extends JFrame {
                     return;
                 }
 
-                // Simple role-based login (no real authentication yet)
                 dispose(); // close login window
 
-                if ("Administrator".equals(role)) {
+                HospitalManager mgr = HospitalManager.getInstance();
+
+                if ("Doctor".equals(role)) {
+                    // Username = staffID, password = "doctor123" (demo)
+                    Doctor doctor = mgr.findDoctorByID(username);
+                    if (doctor != null && "doctor123".equals(password)) {
+                        new DoctorDashboard(doctor).setVisible(true);
+                    } else {
+                        JOptionPane.showMessageDialog(LoginFrame.this,
+                                "Invalid doctor credentials! Use staffID as username and 'doctor123' as password.",
+                                "Login Failed", JOptionPane.ERROR_MESSAGE);
+                        // Reopen login instead of exiting
+                        new LoginFrame().setVisible(true);
+                    }
+                } else if ("Administrator".equals(role)) {
+                    // You can add admin validation later
                     new AdminDashboard().setVisible(true);
-                } else if ("Doctor".equals(role)) {
-                    new DoctorDashboard(username).setVisible(true);
                 } else {
-                    // Receptionist - can register patients, schedule appointments
+                    // Receptionist - no validation for now
                     new ReceptionistDashboard().setVisible(true);
                 }
             }
         });
 
         add(mainPanel, BorderLayout.CENTER);
+    }
+
+    // Optional: for standalone testing
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(() -> new LoginFrame().setVisible(true));
     }
 }

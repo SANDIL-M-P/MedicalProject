@@ -40,4 +40,10 @@ public class MedicalRecord implements Serializable {
     }
 
     // Getters/setters
+
+    public Date getVisitDate() { return visitDate; }
+    public String getSymptoms() { return symptoms; }
+    public String getDiagnosis() { return diagnosis; }
+    public String getTreatment() { return treatment; }
+    public String getPrescription() { return prescription; }
 }

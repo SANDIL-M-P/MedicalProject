@@ -1,0 +1,2 @@
+# appID,patientID,doctorID,appointmentDate,appointmentTime,status,type,notes
+APP1768230221462,21213,DOC001,1232-12-12,,Scheduled,,

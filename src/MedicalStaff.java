@@ -1,8 +1,7 @@
+import java.io.Serializable;
 import java.util.Date;
 
-
-// Inheritance and Abstraction
-public abstract class MedicalStaff extends Person {
+public abstract class MedicalStaff extends Person implements Serializable {
     private String staffID;
     private String department;
     private Date hireDate;
@@ -12,8 +11,9 @@ public abstract class MedicalStaff extends Person {
     private String staffType;
 
     public MedicalStaff(String personID, String firstName, String lastName, Date dateOfBirth, String gender,
-                        String contactNumber, String email, String address, String staffID, String department,
-                        Date hireDate, double salary, String workSchedule, String qualifications, String staffType) {
+                        String contactNumber, String email, String address,
+                        String staffID, String department, Date hireDate, double salary,
+                        String workSchedule, String qualifications, String staffType) {
         super(personID, firstName, lastName, dateOfBirth, gender, contactNumber, email, address);
         this.staffID = staffID;
         this.department = department;
@@ -24,25 +24,24 @@ public abstract class MedicalStaff extends Person {
         this.staffType = staffType;
     }
 
-    // Abstract for polymorphism
+    // Abstract method (must be overridden by subclasses)
     public abstract void performDuties();
 
-    public void login() {
-        // Simulate login
-    }
+    // Public getters (needed for saveNurses(), saveDoctors(), etc.)
+    public String getStaffID()        { return staffID; }
+    public String getDepartment()     { return department; }
+    public Date   getHireDate()       { return hireDate; }
+    public double getSalary()         { return salary; }
+    public String getWorkSchedule()   { return workSchedule; }
+    public String getQualifications() { return qualifications; }
+    public String getStaffType()      { return staffType; }
 
-    public void updateSchedule(String workSchedule) {
-        this.workSchedule = workSchedule;
-    }
+    // Optional setters if needed (but not required for save)
+    public void updateSchedule(String schedule) { this.workSchedule = schedule; }
 
-    public String getWorkingHours() {
-        return workSchedule;
+    // Polymorphic display (can be overridden)
+    @Override
+    public String getPersonDetails() {
+        return "Staff ID: " + staffID + ", Name: " + getFirstName() + " " + getLastName();
     }
-
-    // Inside MedicalStaff class (abstract class)
-    public String getStaffID() {
-        return staffID;
-    }
-
-    // Getters/setters
 }
